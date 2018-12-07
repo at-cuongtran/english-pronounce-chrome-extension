@@ -5,7 +5,7 @@ var END_POINT = {
   howjsay: 'https://howjsay.com/mp3/',
   oxford_us: 'https://www.oxfordlearnersdictionaries.com/media/english/us_pron/',
   oxford_uk: 'https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/',
-  dictionary: 'https://googledictionaryapi.eu-gb.mybluemix.net/?define='
+  dictionary: 'https://mydictionaryapi.appspot.com/?define='
 }
 
 var ACCENT = {

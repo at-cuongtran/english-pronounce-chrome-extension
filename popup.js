@@ -12,10 +12,25 @@ var dictionary = {
   phonetic: document.getElementById('phonetic'),
 }
 
+var popup = document.getElementById('popup');
+
 var selection;
 
 function getDictionary(word) {
   return fetch(END_POINT.dictionary + word).then(v => v.json());
+}
+
+function handleSelection(word) {
+  if (!word) {
+    popup.innerHTML = '<h4>Please select a word and try again!</h4>';
+    return;
+  }
+  selection = word;
+  dictionary.word.innerHTML = selection;
+  getDictionary(selection)
+    .then(v => {
+      dictionary.phonetic.innerHTML = v.phonetic || '/?/';
+    })
 }
 
 chrome.tabs.query({
@@ -32,24 +47,16 @@ chrome.tabs.query({
   {
     code: 'window.getSelection().toString();'
   }, function(s) {
-    selection = s;
-    dictionary.word.innerHTML = selection;
-    getDictionary(selection)
-      .then(v => {
-        dictionary.phonetic.innerHTML = v.phonetic || '/?/';
-      })
+    handleSelection(s[0]);
   });
 });
 
 btn.howjsay.addEventListener('click', function() {
-  console.log('howjsay clicked', selection || 'no selection');
   new Audio(audioURL(END_POINT, selection[0].trim().toLowerCase(), ACCENT.howjsay)).play();
 });
 btn.oxuk.addEventListener('click', function() {
-  console.log('oxuk clicked', selection || 'no selection');
   new Audio(audioURL(END_POINT, selection[0].trim().toLowerCase(), ACCENT.ox_uk)).play();
 });
 btn.oxus.addEventListener('click', function() {
-  console.log('oxus clicked', selection || 'no selection');
   new Audio(audioURL(END_POINT, selection[0].trim().toLowerCase(), ACCENT.ox_us)).play();
 });
