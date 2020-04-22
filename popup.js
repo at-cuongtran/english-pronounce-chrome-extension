@@ -13,11 +13,16 @@ var dictionary = {
 }
 
 var popup = document.getElementById('popup');
-
+var error = document.getElementById('error');
 var selection;
 
 function getDictionary(word) {
-  return fetch(END_POINT.dictionary + word).then(v => v.json());
+  console.log('dict url: ', END_POINT.dictionary + (word && word.trim().split(' ').join('-')));
+  return fetch(END_POINT.dictionary + (word && word.trim().split(' ').join('-'))).then(v => v.json());
+}
+
+function renderDefinitions(dict) {
+  
 }
 
 function handleSelection(word) {
@@ -29,7 +34,21 @@ function handleSelection(word) {
   dictionary.word.innerHTML = selection;
   getDictionary(selection)
     .then(v => {
-      dictionary.phonetic.innerHTML = v.phonetic || '/?/';
+      console.log('result ', v);
+      var phonetic;
+      if (v instanceof Array) {
+        phonetic = v[0].phonetic;
+      } else {
+        phonetic = v.phonetic;
+      }
+      console.log(phonetic);
+      
+      dictionary.phonetic.innerHTML = phonetic || '/ ? /';
+    })
+    .catch(e => {
+      dictionary.phonetic.innerHTML = '';
+      error.innerHTML = 'No exact match found for ' + selection;
+      console.log(e);
     })
 }
 
@@ -47,16 +66,16 @@ chrome.tabs.query({
   {
     code: 'window.getSelection().toString();'
   }, function(s) {
-    handleSelection(s[0]);
+    handleSelection(s && s[0]);
   });
 });
 
 btn.howjsay.addEventListener('click', function() {
-  new Audio(audioURL(END_POINT, selection[0].trim().toLowerCase(), ACCENT.howjsay)).play();
+  new Audio(audioURL(END_POINT, selection && selection.trim().toLowerCase(), ACCENT.howjsay)).play();
 });
 btn.oxuk.addEventListener('click', function() {
-  new Audio(audioURL(END_POINT, selection[0].trim().toLowerCase(), ACCENT.ox_uk)).play();
+  new Audio(audioURL(END_POINT, selection && selection.trim().toLowerCase(), ACCENT.ox_uk)).play();
 });
 btn.oxus.addEventListener('click', function() {
-  new Audio(audioURL(END_POINT, selection[0].trim().toLowerCase(), ACCENT.ox_us)).play();
+  new Audio(audioURL(END_POINT, selection && selection.trim().toLowerCase(), ACCENT.ox_us)).play();
 });

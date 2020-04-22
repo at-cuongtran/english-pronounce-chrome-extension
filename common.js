@@ -1,5 +1,8 @@
 //@ts-check
 'use strict';
+/**
+ * This file consists of all the common logic that uses in main.js and popup.js
+ */
 
 var END_POINT = {
   howjsay: 'https://howjsay.com/mp3/',

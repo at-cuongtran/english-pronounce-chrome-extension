@@ -7,7 +7,7 @@
     <style>
       body {
         font-family: "Open Sans",Arial,sans-serif;
-        font-size: 13px;
+        font-size: 14px;
       }
       p {
         margin: 0;
@@ -35,7 +35,7 @@
         margin-bottom: 10px;
       }
       .sound__title {
-        width: 85px;
+        width: 6.5rem;
         display: inline-block;
         vertical-align: middle;
       }
@@ -46,10 +46,18 @@
         font-weight: 700;
       }
       .word {
-        margin: 10px 0 20px;
+        position: relative;
+        margin: 20px 0 20px;
       }
       .word-text {
         margin-right: 10px;
+      }
+      .error-text {
+        position: absolute;
+        bottom: -18px;
+        left: 0;
+        color: #e40000;
+        font-size: 13px;
       }
 
     </style>
@@ -65,8 +73,9 @@
     </svg>
     <div class="popup" id="popup">
       <div class="word">
-        <span id="word" class="bold-text word-text">hello</span>
+        <span id="word" class="bold-text word-text">hello...</span>
         <i id="phonetic">loading...</i>
+        <span id="error" class="error-text"></span>
       </div>
       <div class="sound">
         <p class="sound__title">Howjsay.com</p>
@@ -90,8 +99,8 @@
         <i>Alt+Shift+K</i>
       </div>
       <div>
-        <h4 class="bold-text">Meaning</h4>
-
+        <h4 class="bold-text">Definitions</h4>
+        
       </div>
     </div>
     <script async src="common.js"></script>
