@@ -35,15 +35,13 @@ function handleSelection(word) {
   getDictionary(selection)
     .then(v => {
       console.log('result ', v);
-      var phonetic;
+      var phonetics;
       if (v instanceof Array) {
-        phonetic = v[0].phonetic;
+        phonetics = v[0].phonetics;
       } else {
-        phonetic = v.phonetic;
+        phonetics = v.phonetics;
       }
-      console.log(phonetic);
-      
-      dictionary.phonetic.innerHTML = phonetic || '/ ? /';
+      dictionary.phonetic.innerHTML = phonetics.length && phonetics[0].text || '/ ? /';
     })
     .catch(e => {
       dictionary.phonetic.innerHTML = '';

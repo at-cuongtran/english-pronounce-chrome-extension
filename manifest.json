@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "English pronounce & dictionary",
   "description": "English pronounce & dictionary",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "Cuong Tran",
   "background": {
     "scripts": [
@@ -36,21 +36,21 @@
     "speak-howjsay": {
       "suggested_key": {
         "default": "Ctrl+Shift+Y",
-        "mac": "Alt+Shift+J"
+        "mac": "MacCtrl+Shift+J"
       },
       "description": "pronounce using howjsay"
     },
     "speak-ox_us": {
       "suggested_key": {
         "default": "Ctrl+Shift+Y",
-        "mac": "Alt+Shift+S"
+        "mac": "MacCtrl+Shift+S"
       },
       "description": "pronounce using Oxford US"
     },
     "speak-ox_uk": {
       "suggested_key": {
         "default": "Ctrl+Shift+Y",
-        "mac": "Alt+Shift+K"
+        "mac": "MacCtrl+Shift+K"
       },
       "description": "pronounce using Oxford UK"
     },

@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 //@ts-check
 'use strict';
-
+console.log('Main js');
 chrome.commands.onCommand.addListener(function(command) {
   console.log('Commandasdas:', command);
   chrome.tabs.query({

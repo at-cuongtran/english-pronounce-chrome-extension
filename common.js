@@ -8,7 +8,9 @@ var END_POINT = {
   howjsay: 'https://howjsay.com/mp3/',
   oxford_us: 'https://www.oxfordlearnersdictionaries.com/media/english/us_pron/',
   oxford_uk: 'https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/',
-  dictionary: 'https://mydictionaryapi.appspot.com/?define='
+  // dictionary: 'https://mydictionaryapi.appspot.com/?define='
+  dictionary: 'https://api.dictionaryapi.dev/api/v2/entries/en/'
+  
 }
 
 var ACCENT = {
@@ -101,6 +103,7 @@ function handleCommand(command, selection) {
 
   switch(command) {
     case COMMAND.speakhowjsay:
+      console.log(audioURL(END_POINT, selection, ACCENT.howjsay));
       new Audio(audioURL(END_POINT, selection, ACCENT.howjsay)).play();
       break;
     case COMMAND.speakOX_UK:
